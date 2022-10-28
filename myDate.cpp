@@ -5,13 +5,15 @@
 // I further certify that I typed each and every line of code in this program.
 #include "myDate.h"
 #include<iostream>
+#include <sstream>
+
 using namespace std;
 
+//
+//int Greg2Julian(int month, int day, int year);
+//void Julian2Greg(int JD, int & month, int & day, int & year);
 
-int Greg2Julian(int month, int day, int year);
-void Julian2Greg(int JD, int &month, int &day, int &year);
-
-int Greg2Julian(int month, int day, int year){
+int myDate::Greg2Julian(int month, int day, int year){
 
     int I = year;
     int J = month;
@@ -19,7 +21,7 @@ int Greg2Julian(int month, int day, int year){
     int JD = K - 32075 + 1461 * (I + 4800 + (J - 14) / 12) / 4 + 367 * (J - 2 - (J - 14) / 12 * 12) / 12 - 3 * ((I + 4900 + (J - 14) / 12) / 100) / 4;
     return JD;
 }
-void Julian2Greg(int JD, int & month, int & day, int & year){
+void myDate::Julian2Greg(int JD, int &month, int &day, int &year){
     int l = JD + 68569;
     int n = 4 * l / 146097;
     l = l - (146097 * n + 3) / 4;
@@ -34,7 +36,7 @@ void Julian2Greg(int JD, int & month, int & day, int & year){
     year = i;
     month = j;
     day = k;
-    
+
 }
 
 // default constructor. This will set the date to May 11, 1959
@@ -63,32 +65,6 @@ myDate::myDate(int M, int D, int Y){
 void myDate::display(){
     string months = monthName[month - 1];
     cout << months << " " <<day <<", "<<year;
-//    if(month == 5){
-//        cout << "May" << " " << day << ", " <<year;
-//    }else if(month == 1){
-//        cout << "Jan" << " " << day << ", " <<year;
-//    }else if(month == 2){
-//        cout << "Feb" << " " << day << ", " <<year;
-//    }else if(month == 3){
-//        cout << "Mar" << " " << day << ", " <<year;
-//    }else if(month == 4){
-//        cout << "Apr" << " " << day << ", " <<year;
-//    }else if(month == 6){
-//        cout << "Jun" << " " << day << ", " <<year;
-//    }else if(month == 7){
-//        cout << "Jul" << " " << day << ", " <<year;
-//    }else if(month == 8){
-//        cout << "Aug" << " " << day << ", " <<year;
-//    }else if(month == 9){
-//        cout << "Sep" << " " << day << ", " <<year;
-//    }else if(month == 10){
-//        cout << "Oct" << " " << day << ", " <<year;
-//    }else if(month == 11){
-//        cout << "Nov" << " " << day << ", " <<year;
-//    }else if(month == 12){
-//        cout << "Dec" << " " << day << ", " <<year;
-//    }
-
 }
 
 //increment the date by N days.
@@ -174,4 +150,16 @@ string myDate::dayName(){
     int weekdays = JD % 7;
     return nameOfWeekdays[weekdays];
 }
+//return a string for the date format
+string myDate::toString() {
+    std :: ostringstream releasedMonth;
+    releasedMonth <<monthName[month - 1] << " " << day <<", "<<year;
+
+    return releasedMonth.str();
+}
+
+
+
+
+
 

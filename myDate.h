@@ -6,7 +6,7 @@ using namespace std;
 class myDate{
 private:
     int month, day, year;
-    string monthName[12] = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+    string monthName[12] = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
 
 public:
 
@@ -22,8 +22,11 @@ public:
     int getYear(); //return the year
     int dayOfYear();//the number of days since the current year began. Example Jan 1 is 1, Feb 1 is 32.
     string dayName();//returns Monday, Tuesday, etc according to the day of the week.
+    string toString();
+    int Greg2Julian(int month, int day, int year);
+    void Julian2Greg(int JD, int & month, int & day, int & year);
 
+    string toString1();
 };
 
-
-#endif //PROGRAM2_MYDATE_H
+#endif
